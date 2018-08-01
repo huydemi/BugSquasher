@@ -10,6 +10,7 @@ import CoreData
 
 class BugSquasherIncrementalStore : NSIncrementalStore {
   var bugsDB: [String] = []
+  var currentBugID = 0
   
   class var storeType: String {
     return String(describing: BugSquasherIncrementalStore.self)
@@ -53,9 +54,52 @@ class BugSquasherIncrementalStore : NSIncrementalStore {
       }
       
       return []
+    } else if request.requestType == .saveRequestType {
+      let saveRequest = request as! NSSaveChangesRequest
+      
+      if saveRequest.insertedObjects != nil {
+        for bug in saveRequest.insertedObjects! {
+          bugsDB.append((bug as! Bug).title)
+        }
+      }
+      
+      self.saveBugs()
+      
+      return [AnyObject]()
     }
     
     return []
+  }
+  
+  override func obtainPermanentIDs(for array: [NSManagedObject]) throws -> [NSManagedObjectID] {
+    var objectIDs = [NSManagedObjectID]()
+    for managedObject in array {
+      let objectID = self.newObjectID(for: managedObject.entity,
+                                      referenceObject: managedObject.value(forKey: "bugID")!)
+      objectIDs.append(objectID)
+    }
+    
+    return objectIDs
+  }
+  
+  override func newValuesForObject(with objectID: NSManagedObjectID,
+                                   with context: NSManagedObjectContext) throws -> NSIncrementalStoreNode {
+    
+    let values = ["title": bugsDB[currentBugID],"bugID": currentBugID] as [String : Any]
+    let node = NSIncrementalStoreNode(objectID: objectID, withValues: values,
+                                      version: UInt64(0.1))
+    
+    currentBugID += 1
+    
+    return node
+  }
+  
+  func saveBugs() {
+    if let dir = FileManager.default.urls(for: .documentDirectory,
+                                          in: .userDomainMask).first {
+      let path = dir.appendingPathComponent("bugs.txt")
+      (bugsDB as NSArray).write(to: path, atomically: true)
+    }
   }
   
 }
