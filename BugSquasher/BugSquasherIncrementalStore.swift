@@ -34,6 +34,27 @@ class BugSquasherIncrementalStore : NSIncrementalStore {
 
   override func execute(_ request: NSPersistentStoreRequest,
                         with context: NSManagedObjectContext?) throws -> Any {
+    
+    if request.requestType == .fetchRequestType {
+      let fetchRequest = request as! NSFetchRequest<NSManagedObject>
+      
+      if fetchRequest.resultType == NSFetchRequestResultType() {
+        var fetchedObjects = [NSManagedObject]()
+        
+        if bugsDB.count > 0 {
+          for currentBugID in 1...bugsDB.count {
+            let objectID = self.newObjectID(for: fetchRequest.entity!,
+                                            referenceObject: currentBugID)
+            let curObject = context?.object(with: objectID)
+            fetchedObjects.append(curObject!)
+          }
+        }
+        return fetchedObjects
+      }
+      
+      return []
+    }
+    
     return []
   }
   
