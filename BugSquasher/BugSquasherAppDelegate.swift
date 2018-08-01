@@ -40,6 +40,9 @@ class BugSquasherAppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+    let storeType = containerName + "." + BugSquasherIncrementalStore.storeType
+    NSPersistentStoreCoordinator.registerStoreClass(BugSquasherIncrementalStore.self, forStoreType: storeType)
+    
     return true
   }
 
@@ -52,6 +55,10 @@ class BugSquasherAppDelegate: UIResponder, UIApplicationDelegate {
   lazy var persistentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: self.containerName)
 
+    var bugSquasherStoreDescription = NSPersistentStoreDescription()
+    bugSquasherStoreDescription.type = container.name + "." + BugSquasherIncrementalStore.storeType
+    container.persistentStoreDescriptions = [bugSquasherStoreDescription]
+    
     container.loadPersistentStores(completionHandler: { (storeDescription, error) in
       if let error = error as NSError? {
         fatalError("Unresolved error \(error), \(error.userInfo)")

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6BE6BC3C2111A0CE005CA5BF /* BugSquasherIncrementalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE6BC3B2111A0CE005CA5BF /* BugSquasherIncrementalStore.swift */; };
 		F90753591F4B4E17000A7C61 /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90753581F4B4E17000A7C61 /* Bug.swift */; };
 		F9E8D5C11F3A3C160064EEEF /* BugSquasherAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E8D5C01F3A3C160064EEEF /* BugSquasherAppDelegate.swift */; };
 		F9E8D5C31F3A3C160064EEEF /* BugSquasherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E8D5C21F3A3C160064EEEF /* BugSquasherViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6BE6BC3B2111A0CE005CA5BF /* BugSquasherIncrementalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugSquasherIncrementalStore.swift; sourceTree = "<group>"; };
 		F90753581F4B4E17000A7C61 /* Bug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
 		F9E8D5BD1F3A3C160064EEEF /* BugSquasher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BugSquasher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9E8D5C01F3A3C160064EEEF /* BugSquasherAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugSquasherAppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				F9E8D5CF1F3A3C160064EEEF /* Info.plist */,
 				F9E8D5C71F3A3C160064EEEF /* BugSquasher.xcdatamodeld */,
 				F90753581F4B4E17000A7C61 /* Bug.swift */,
+				6BE6BC3B2111A0CE005CA5BF /* BugSquasherIncrementalStore.swift */,
 			);
 			path = BugSquasher;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9E8D5C91F3A3C160064EEEF /* BugSquasher.xcdatamodeld in Sources */,
+				6BE6BC3C2111A0CE005CA5BF /* BugSquasherIncrementalStore.swift in Sources */,
 				F9E8D5C31F3A3C160064EEEF /* BugSquasherViewController.swift in Sources */,
 				F9E8D5C11F3A3C160064EEEF /* BugSquasherAppDelegate.swift in Sources */,
 				F90753591F4B4E17000A7C61 /* Bug.swift in Sources */,
